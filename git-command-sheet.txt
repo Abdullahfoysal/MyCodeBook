@@ -1,0 +1,144 @@
+git initialize:
+git init
+
+git stage:[working directory-> stage directory]
+
+git add . //stage all the file changed on 
+git add first.txt //stage only first.txt file only
+git add tours* /add all file start with the name tours
+
+git commit : [stage directory-> repository]
+
+single line:
+git commit -m "changes add to repository" // added commit to which are on stage directory
+muli-line message:
+git commit 
+
+git rename a file:
+
+git mv first.txt second.txt //which rename the file to second.txt and add to stage directory
+
+git undo change:[on working directory]
+
+single file:
+git checkout -- first.txt // undo first.txt from [Repository->working directory]
+git checkout -- .         //undo all file on the current directory
+
+checkout from a commit SHA-1:
+git checkout 8f2218d299cf4b679bb0 -- . //all file updated [Repository->working directory]
+git checkout 8f2218d299cf4b679bb0 -- first.txt //update a single file from a commit sha1 
+
+
+git unstage :[stage->working directory] 
+single file:
+
+git reset HEAD first.txt //unstage from [stage->working directory]
+
+POWEFUL cmd: reset
+move the head of commit:| or delete some commit
+git reset sha1 //head move to this commit
+
+git reset current~2 //head move 2 commit backwards from current branch
+
+git reset --soft sha1 //it will only change head to the sha1 commit  but 
+			[stage and working directory won't change]
+
+git reset --mixed sha1 // same as git reset sha1[only working directory won't change]
+
+git reset --hard sha1 //change all to sha1 commit
+
+remove a commit from head:
+git revert HEAD // but it add new commit and don't delete HEAD commit
+
+
+Edit last commit message: [if not pushed to remote repository]
+ git commit --amend
+
+git show commit:
+git show sha1^//show the parent of sha1
+git show sha1^^//show the grand-parent of sha1
+
+show your commit changes:
+git log -p ///list of commit and changes log patches
+git log --stat //changes statistic
+
+
+List of branch:
+git branch
+create branch: //don't move to new branch
+git branch new_feature
+git checkout -b new_feature //create + move to the new features
+
+change to new_branch:
+git checkout new_feature
+
+check which branches are merged to your current branch:
+
+git branch --merged 
+
+Rename my current branch:
+git branch -m renamed_branch
+
+Delete branch:
+
+git branch -d branch_name
+
+git push origin :orign_branch_name //[delete branch from origin]
+git push origin --delete origin_branch_name // [delete branch from origin]
+
+create new local branch of a copy of another branch:
+
+git branch branch_name origin/branch_name
+
+git completion (auto show when press Tab): add to ./bashrc file download the file from:github.com/git/git/contri../git completion
+
+if [ -f ~/.git-completion.bash ]; then
+  source ~/.git-completion.bash
+fi
+
+
+git prompt: add the following to ./bashrc file
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+export PS1="\u@\h \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
+
+
+git merge:[on current branch]
+
+git merge new_feature
+
+git merge --abort //undo merge cmd
+
+
+save temporary on stash:
+
+git stash save "changed mission page title"
+//show stash [we can use the stash at any branch at any time]
+git stash list
+
+git stash show stash@{0}
+git stash show -p stash@{0}
+
+ git stash pop stash@{0} //use the stash and remove it from stash
+
+git stash apply //use the stash but not remove it from stash
+
+git stash drop stash@{0}//remove it from stash
+ git stash clear //remove all item
+
+Remove a remote git:
+git remote rm origin
+
+fetch remote repository update to local:
+git fetch  //which fetch all information[doesn't merge anything] @latest changes
+
+git fetch + git merge = git pull  ///to update local branch
+
+
+add git command short-cut or alis:#add alias "st = status" to ~/.gitconfig
+git config --global alias.st "status"
+
+
+

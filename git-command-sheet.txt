@@ -1,4 +1,4 @@
-<h3>git initialize:</h3>
+git initialize:
 git init
 
 git stage:[working directory-> stage directory]
